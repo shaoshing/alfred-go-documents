@@ -7,4 +7,4 @@ You need to have Alfred 2.0 and Powerpack to use this workflow.
 
 ## Download
 
-[Go-Documents.alfredworkflow](Go-Documents.alfredworkflow)
+[Go-Documents.alfredworkflow](https://github.com/shaoshing/alfred-go-documents/raw/master/Go-Documents.alfredworkflow)
