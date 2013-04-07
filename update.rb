@@ -9,15 +9,14 @@ unless api_text = File.read(go_api_path) rescue nil
   exit
 end
 
-IGNORED_PKGS = /syscall|debug/
 apis = {}
 for definition in api_text.lines do
   # ignore api definitions similar to below:
   #   pkg archive/tar, type Header struct, Devmajor int64
   #   pkg go/ast, type Decl interface, End() token.Pos
   #   pkg go/build, var Default Context
-  next if definition =~ /(.+\,.+(struct|interface)[\,|\:].+)|(var )/
-  next if definition =~ IGNORED_PKGS
+  #   pkg syscall (windows-amd64), const SW_RESTORE ideal-int
+  next if definition =~ /(.+\,.+(struct|interface)[\,|\:].+)|(var )|(syscall.+const )/
 
   definition = definition.          #=> pkg log/syslog (darwin-386), const LOG_ALERT Priority
                 gsub("pkg ", "").   #=> log/syslog (darwin-386), const LOG_ALERT Priority
